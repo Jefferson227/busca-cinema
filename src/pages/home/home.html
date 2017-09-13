@@ -1,0 +1,28 @@
+<ion-header>
+  <ion-navbar>
+    <button ion-button menuToggle>
+      <ion-icon name="menu"></ion-icon>
+    </button>
+    <ion-title>Home</ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content padding>
+  <h3>Ionic Menu Starter</h3>
+
+  <p>
+    If you get lost, the <a href="http://ionicframework.com/docs/v2">docs</a> will show you the way.
+  </p>
+
+  <ion-item>
+    <ion-label>Estado:</ion-label>
+    <ion-select [(ngModel)]="state">
+      <ion-option
+        *ngFor="let state of states"
+        [value]="state.uf">{{state.name}}</ion-option>
+    </ion-select>
+
+  </ion-item>
+
+  <button ion-button secondary menuToggle>Toggle Menu</button>
+</ion-content>
