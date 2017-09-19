@@ -4,7 +4,6 @@ import 'rxjs/add/operator/map';
 
 @Injectable()
 export class ApiConnectorProvider {
-
   baseUrl = 'https://api-content.ingresso.com/v0';
 
   constructor(public http: Http) {
@@ -21,4 +20,5 @@ export class ApiConnectorProvider {
     .get(`${this.baseUrl}/sessions/city/${cityId}/theater/${theaterId}`)
     .map(res => res.json());
   }
+
 }
