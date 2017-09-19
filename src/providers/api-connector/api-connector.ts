@@ -2,20 +2,23 @@ import { Injectable } from '@angular/core';
 import { Http } from '@angular/http';
 import 'rxjs/add/operator/map';
 
-/*
-  Generated class for the ApiConnectorProvider provider.
-
-  See https://angular.io/guide/dependency-injection for more info on providers
-  and Angular DI.
-*/
 @Injectable()
 export class ApiConnectorProvider {
+  baseUrl = 'https://api-content.ingresso.com/v0';
 
   constructor(public http: Http) {
-    this.loadStates = () => this.http
-      .get('https://api-content.ingresso.com/v0/states')
+  }
+
+  loadStates() {
+    return this.http
+      .get(this.baseUrl + '/states')
       .map(res => res.json());
   }
 
-  loadStates;
+  getMovies(cityId, theaterId) {
+    return this.http
+    .get(`${this.baseUrl}/sessions/city/${cityId}/theater/${theaterId}`)
+    .map(res => res.json());
+  }
+
 }
