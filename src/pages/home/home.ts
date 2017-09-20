@@ -14,7 +14,6 @@ export class HomePage {
   states;
 
   constructor(public navCtrl: NavController, public apiConnector: ApiConnectorProvider) {
-    // this.loadStatesData();
     this.loadMovies();
   }
 
