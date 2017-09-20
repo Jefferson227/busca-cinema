@@ -15,8 +15,8 @@ export class ApiConnectorProvider {
 
   getMovies(cityId, theaterId) {
     return this.http
-    .get(`/api/sessions/city/${cityId}/theater/${theaterId}`)
-    .map(res => res.json());
+      .get(`/api/sessions/city/${cityId}/theater/${theaterId}`)
+      .map(res => res.json());
   }
 
 }
