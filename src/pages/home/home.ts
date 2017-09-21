@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { NavController } from 'ionic-angular';
 import { ApiConnectorProvider } from '../../providers/api-connector/api-connector';
+import { MovieDetailPage } from "../movie-detail/movie-detail";
 
 @Component({
   selector: 'page-home',
@@ -29,5 +30,9 @@ export class HomePage {
     this.apiConnector
         .loadStates()
         .subscribe(data => this.states = data);
+  }
+
+  goToDetail(movie) {
+    this.navCtrl.push(MovieDetailPage, movie);
   }
 }
