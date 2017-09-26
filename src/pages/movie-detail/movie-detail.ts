@@ -17,7 +17,6 @@ export class MovieDetailPage {
 
   constructor(public navCtrl: NavController, public navParams: NavParams) {
     this.movie = navParams.data;
-    debugger
   }
 
   buyTickets() {
