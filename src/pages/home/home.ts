@@ -35,7 +35,12 @@ export class HomePage {
     this.apiConnector
       .getMovieDetail(movieId)
       .subscribe(data => {
-        this.navCtrl.push(MovieDetailPage, data);
+        let objParams = {
+          cityId: this.cityId,
+          movie: data
+        };
+
+        this.navCtrl.push(MovieDetailPage, objParams);
       });
   }
 }

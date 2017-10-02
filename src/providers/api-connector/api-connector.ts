@@ -28,4 +28,20 @@ export class ApiConnectorProvider {
       .get(`/api/events/${id}/partnership/${partnership}`)
       .map(res => res.json());
   }
+
+  getTheaters(cityId) {
+    let partnership = 0;
+
+    return this.http
+      .get(`/api/theaters/city/${cityId}/partnership/${partnership}`)
+      .map(res => res.json());
+  }
+
+  getMoviesByTheater(cityId, theaterId) {
+    let partnership = 0;
+
+    return this.http
+      .get(`/api/sessions/city/${cityId}/theater/${theaterId}/partnership/${partnership}`)
+      .map(res => res.json());
+  }
 }
