@@ -31,7 +31,11 @@ export class HomePage {
         .subscribe(data => this.states = data);
   }
 
-  goToDetail(movie) {
-    this.navCtrl.push(MovieDetailPage, movie);
+  goToDetail(movieId) {
+    this.apiConnector
+      .getMovieDetail(movieId)
+      .subscribe(data => {
+        this.navCtrl.push(MovieDetailPage, data);
+      });
   }
 }
