@@ -13,9 +13,11 @@ export class ApiConnectorProvider {
       .map(res => res.json());
   }
 
-  getMovies(cityId, theaterId) {
+  getMovies(cityId) {
+    let partnership = 0;
+
     return this.http
-      .get(`/api/sessions/city/${cityId}/theater/${theaterId}`)
+      .get(`/api/events/city/${cityId}/partnership/${partnership}`)
       .map(res => res.json());
   }
 

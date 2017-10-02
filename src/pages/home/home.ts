@@ -9,8 +9,7 @@ import { MovieDetailPage } from "../movie-detail/movie-detail";
 })
 export class HomePage {
   // MOCK DATA FOR TESTING PURPOSES
-  cityId    = 36;
-  theaterId = 1256;
+  cityId = 36;
   movies;
   states;
 
@@ -20,9 +19,9 @@ export class HomePage {
 
   loadMovies() {
     this.apiConnector
-        .getMovies(this.cityId, this.theaterId)
+        .getMovies(this.cityId)
         .subscribe(data => {
-          this.movies = data[0].movies;
+          this.movies = data.items;
         });
   }
 
