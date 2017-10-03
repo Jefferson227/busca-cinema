@@ -17,13 +17,13 @@ export class MovieDetailPage {
   movie;
   theaters;
   cityId;
-  movieDetails = [];
+  movieDetailsByTheater = [];
 
   constructor(public navCtrl: NavController, public navParams: NavParams, public apiConnector: ApiConnectorProvider) {
     this.movie  = navParams.data.movie;
     this.cityId = navParams.data.cityId;
     this.getTheaters(this.cityId);
-    console.log(this.movieDetails);
+    console.log(this.movieDetailsByTheater);
   }
 
   buyTickets() {
@@ -34,26 +34,27 @@ export class MovieDetailPage {
     this.apiConnector
       .getTheaters(cityId)
       .subscribe(data => {
-        debugger;
         this.getMoviesByTheater(data.items);
       });
   }
 
   getMoviesByTheater(theaters) {
-    theaters.forEach = theater => {
+    // Implement 'segments' to show the info by data
+    // Mock current date
+    let date = new Date().toISOString().substr(0, 10);
+
+    theaters.forEach(theater => {
       this.apiConnector
-        .getMoviesByTheater(this.cityId, theater.id)
-        .subscribe(data => {
-          let movieFilter =
-            data.filter = f =>
-              f.id === this.movie.id;
+        .getMoviesByTheater(this.cityId, theater.id, date)
+        .subscribe(moviesFromTheater => {
+          let res = {};
+          res['theater']  = theater;
+          res['date']     = date;
+          res['sessions'] = moviesFromTheater[0].movies
+            .filter(f => f.id === this.movie.id);
 
-          if (movieFilter) {
-            this.movieDetails.push(movieFilter);
-          }
+          this.movieDetailsByTheater.push(res);
         });
-    }
-
-    theaters.forEach();
+    });
   }
 }
