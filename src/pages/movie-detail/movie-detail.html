@@ -13,16 +13,23 @@
 </ion-header>
 
 
-<ion-content padding>
-  <img [src]="movie.images[1].url" />
-  <div>
-    <strong>Classificação:</strong> {{movie.contentRating}}
+<ion-content>
+  <div padding>
+    <img [src]="movie.images[1].url" />
+    <div>
+      <strong>Classificação:</strong> {{movie.contentRating}}
+    </div>
+    <div>
+      <strong>Duração:</strong> {{movie.duration}} min
+    </div>
+    <div *ngIf="genre && genre.length > 0">
+      <strong>Gênero:</strong><span *ngFor="let genre of genres">{{genre}}</span>
+    </div>
   </div>
-  <div>
-    <strong>Duração:</strong> {{movie.duration}} min
-  </div>
-  <div *ngIf="genre && genre.length > 0">
-    <strong>Gênero:</strong><span *ngFor="let genre of genres">{{genre}}</span>
-  </div>
+  <ion-segment [(ngModel)]="segmentSessionDates" color="primary" (ionChange)="onChangeSessionDate($event)">
+    <ion-segment-button *ngFor="let date of sessionDates" [value]="date">
+      {{date}}
+    </ion-segment-button>
+  </ion-segment>
   <!-- <button ion-button (click)="buyTickets()">comprar ingresso</button> -->
 </ion-content>
