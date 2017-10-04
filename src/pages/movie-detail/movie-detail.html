@@ -34,7 +34,7 @@
   <section *ngFor="let movieDetail of movieDetailsByTheater">
     <h3>{{movieDetail.theater}}</h3>
     <div *ngFor="let room of movieDetail.rooms">
-      <div>{{room.title}}</div>
+      <div>{{room.name}}</div>
       <div *ngFor="let session of room.sessions">
         <span>{{session.time}}</span>
         <span *ngFor="let type of session.types">{{type.name}} </span>
