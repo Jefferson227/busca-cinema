@@ -12,7 +12,7 @@ import { Component, Input } from '@angular/core';
 })
 export class SessionInformationComponent {
   @Input()
-  movieDetails: any;
+  theaters: any;
 
   constructor() {
   }

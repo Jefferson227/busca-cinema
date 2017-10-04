@@ -44,4 +44,12 @@ export class ApiConnectorProvider {
       .get(`/api/sessions/city/${cityId}/theater/${theaterId}/partnership/${partnership}?date=${date}`)
       .map(res => res.json());
   }
+
+  getTheatersByMovie(cityId, movieId, date) {
+    let partnership = 0;
+
+    return this.http
+      .get(`/api/sessions/city/${cityId}/event/${movieId}/partnership/${partnership}?date=${date}`)
+      .map(res => res.json());
+  }
 }

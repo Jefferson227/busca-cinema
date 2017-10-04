@@ -16,54 +16,45 @@ import moment from 'moment';
 })
 export class MovieDetailPage {
   movie;
-  theaters;
   cityId;
   segmentSessionDates;
   movieDetailsByTheater = [];
+  theaters              = [];
   sessionDates          = [];
 
   constructor(public navCtrl: NavController, public navParams: NavParams, public apiConnector: ApiConnectorProvider) {
     this.movie  = navParams.data.movie;
     this.cityId = navParams.data.cityId;
-    this.getTheaters(this.cityId);
     this.getSessionDates();
+    this.getTheatersByMovie();
   }
 
   buyTickets() {
     alert('era pra abrir a url' + this.movie.siteURL);
   }
 
-  getTheaters(cityId) {
+  getTheatersByMovie() {
+    let date   = moment(this.segmentSessionDates, 'DD/MM/YYYY').format('YYYY-MM-DD');
+    let t      = this;
+    t.theaters = [];
+
     this.apiConnector
-      .getTheaters(cityId)
-      .subscribe(data => {
-        this.getMoviesByTheater(data.items);
-      });
-  }
-
-  getMoviesByTheater(theaters) {
-    let date = moment(this.segmentSessionDates, 'DD/MM/YYYY').format('YYYY-MM-DD');
-    let vm   = this;
-
-    theaters.forEach(theater => {
-      vm.movieDetailsByTheater = [];
-
-      this.apiConnector
-        .getMoviesByTheater(vm.cityId, theater.id, date)
-        .subscribe(moviesFromTheater => {
-          if (moviesFromTheater) {
-            let movie = moviesFromTheater[0].movies
-              .find(f => f.id === vm.movie.id);
-
-            if (movie) {
-              vm.movieDetailsByTheater.push({
-                rooms: movie.rooms,
-                theater: theater.name
-              });
-            }
+      .getTheatersByMovie(t.cityId, t.movie.id, date)
+      .subscribe(
+        (data) => {
+          if (data && data.length > 0) {
+            t.theaters = data[0].theaters;
+          } else {
+            console.error('No theaters were found.');
           }
-        });
-    });
+        },
+        (error) => {
+          console.error('Error on getting theater by movie.');
+        },
+        () => {
+          // Finally
+        }
+      );
   }
 
   getSessionDates() {
@@ -75,6 +66,6 @@ export class MovieDetailPage {
   }
 
   onChangeSessionDate(event) {
-    this.getTheaters(this.cityId);
+    this.getTheatersByMovie();
   }
 }
