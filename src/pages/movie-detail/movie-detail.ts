@@ -52,15 +52,15 @@ export class MovieDetailPage {
         .getMoviesByTheater(vm.cityId, theater.id, date)
         .subscribe(moviesFromTheater => {
           if (moviesFromTheater) {
-            let movieDetail = moviesFromTheater[0].movies
-              .filter(f => f.id === vm.movie.id);
+            let movie = moviesFromTheater[0].movies
+              .find(f => f.id === vm.movie.id);
 
-            let res = {};
-            res['theater']  = theater;
-            res['date']     = date;
-            res['sessions'] = movieDetail;
-
-            vm.movieDetailsByTheater.push(res);
+            if (movie) {
+              vm.movieDetailsByTheater.push({
+                rooms: movie.rooms,
+                theater: theater.name
+              });
+            }
           }
         });
     });
