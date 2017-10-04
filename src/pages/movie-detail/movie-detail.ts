@@ -64,8 +64,6 @@ export class MovieDetailPage {
           }
         });
     });
-
-    console.log(this.movieDetailsByTheater);
   }
 
   getSessionDates() {
