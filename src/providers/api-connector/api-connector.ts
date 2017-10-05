@@ -4,12 +4,15 @@ import 'rxjs/add/operator/map';
 
 @Injectable()
 export class ApiConnectorProvider {
+  baseUrl = '/api';
+  //baseUrl = 'https://api-content.ingresso.com/v0';
+
   constructor(public http: Http) {
   }
 
   loadStates() {
     return this.http
-      .get('/api/states')
+      .get(`${this.baseUrl}/states`)
       .map(res => res.json());
   }
 
@@ -17,7 +20,7 @@ export class ApiConnectorProvider {
     let partnership = 0;
 
     return this.http
-      .get(`/api/events/city/${cityId}/partnership/${partnership}`)
+      .get(`${this.baseUrl}/events/city/${cityId}/partnership/${partnership}`)
       .map(res => res.json());
   }
 
@@ -25,7 +28,7 @@ export class ApiConnectorProvider {
     let partnership = 0;
 
     return this.http
-      .get(`/api/events/${id}/partnership/${partnership}`)
+      .get(`${this.baseUrl}/events/${id}/partnership/${partnership}`)
       .map(res => res.json());
   }
 
@@ -33,7 +36,7 @@ export class ApiConnectorProvider {
     let partnership = 0;
 
     return this.http
-      .get(`/api/theaters/city/${cityId}/partnership/${partnership}`)
+      .get(`${this.baseUrl}/theaters/city/${cityId}/partnership/${partnership}`)
       .map(res => res.json());
   }
 
@@ -41,7 +44,7 @@ export class ApiConnectorProvider {
     let partnership = 0;
 
     return this.http
-      .get(`/api/sessions/city/${cityId}/theater/${theaterId}/partnership/${partnership}?date=${date}`)
+      .get(`${this.baseUrl}/sessions/city/${cityId}/theater/${theaterId}/partnership/${partnership}?date=${date}`)
       .map(res => res.json());
   }
 
@@ -49,7 +52,7 @@ export class ApiConnectorProvider {
     let partnership = 0;
 
     return this.http
-      .get(`/api/sessions/city/${cityId}/event/${movieId}/partnership/${partnership}?date=${date}`)
+      .get(`${this.baseUrl}/sessions/city/${cityId}/event/${movieId}/partnership/${partnership}?date=${date}`)
       .map(res => res.json());
   }
 }
