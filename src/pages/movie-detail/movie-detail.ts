@@ -21,6 +21,7 @@ export class MovieDetailPage {
   movieDetailsByTheater = [];
   theaters              = [];
   sessionDates          = [];
+  noSessionsMessage     = '';
 
   constructor(public navCtrl: NavController, public navParams: NavParams, public apiConnector: ApiConnectorProvider) {
     this.movie  = navParams.data.movie;
@@ -34,9 +35,10 @@ export class MovieDetailPage {
   }
 
   getTheatersByMovie() {
-    let date   = moment(this.segmentSessionDates, 'DD/MM/YYYY').format('YYYY-MM-DD');
-    let t      = this;
-    t.theaters = [];
+    let date            = moment(this.segmentSessionDates, 'DD/MM/YYYY').format('YYYY-MM-DD');
+    let t               = this;
+    t.theaters          = [];
+    t.noSessionsMessage = '';
 
     this.apiConnector
       .getTheatersByMovie(t.cityId, t.movie.id, date)
@@ -45,7 +47,7 @@ export class MovieDetailPage {
           if (data && data.length > 0) {
             t.theaters = data[0].theaters;
           } else {
-            console.error('No theaters were found.');
+            t.noSessionsMessage = 'There aren\'t any sessions available for today.';
           }
         },
         (error) => {
