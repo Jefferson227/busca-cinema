@@ -52,7 +52,7 @@ export class MovieDetailPage {
           if (data && data.length > 0) {
             t.theaters = data[0].theaters;
           } else {
-            t.noSessionsMessage = 'There aren\'t any sessions available for today.';
+            t.noSessionsMessage = 'Não há sessões disponíveis para esta data.';
           }
         },
         (error) => {
