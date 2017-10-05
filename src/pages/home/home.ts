@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { NavController } from 'ionic-angular';
 import { ApiConnectorProvider } from '../../providers/api-connector/api-connector';
+import { LoadingProvider } from '../../providers/loading/loading';
 import { MovieDetailPage } from "../movie-detail/movie-detail";
 
 @Component({
@@ -12,8 +13,11 @@ export class HomePage {
   cityId = 36;
   movies;
   states;
+  loading;
 
-  constructor(public navCtrl: NavController, public apiConnector: ApiConnectorProvider) {
+  constructor(public navCtrl: NavController, public apiConnector: ApiConnectorProvider, public loadingProvider: LoadingProvider) {
+    this.loading = this.loadingProvider.initialize();
+    this.loadingProvider.show(this.loading);
     this.loadMovies();
   }
 
@@ -22,6 +26,7 @@ export class HomePage {
         .getMovies(this.cityId)
         .subscribe(data => {
           this.movies = data.items;
+          this.loadingProvider.hide(this.loading);
         });
   }
 
