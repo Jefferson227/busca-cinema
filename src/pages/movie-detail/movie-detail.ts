@@ -60,7 +60,7 @@ export class MovieDetailPage {
   }
 
   getSessionDates() {
-    for (let i = 1; i <= 4; i++) {
+    for (let i = 0; i < 4; i++) {
       this.sessionDates.push(moment().add(i, 'days').format('DD/MM/YYYY'));
     }
 
