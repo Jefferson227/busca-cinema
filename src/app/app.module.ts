@@ -10,6 +10,7 @@ import { MovieDetailPage } from '../pages/movie-detail/movie-detail';
 import { ApiConnectorProvider } from '../providers/api-connector/api-connector';
 import { HttpModule } from '@angular/http';
 import { ComponentsModule } from "../components/components.module";
+import { LoadingProvider } from '../providers/loading/loading';
 @NgModule({
   declarations: [
     MyApp,
@@ -32,7 +33,8 @@ import { ComponentsModule } from "../components/components.module";
     StatusBar,
     SplashScreen,
     {provide: ErrorHandler, useClass: IonicErrorHandler},
-    ApiConnectorProvider
+    ApiConnectorProvider,
+    LoadingProvider
   ]
 })
 export class AppModule {}
