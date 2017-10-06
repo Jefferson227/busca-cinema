@@ -1,10 +1,13 @@
-<section *ngFor="let theater of theaters">
-  <h3>{{theater.name}}</h3>
-  <div *ngFor="let room of theater.rooms">
-    <div>{{room.name}}</div>
-    <div *ngFor="let session of room.sessions">
-      <span>{{session.time}}</span>
-      <span *ngFor="let type of session.types">{{type.name}} </span>
+<div padding class="session-information">
+  <div [hidden]="theaters.length > 0">{{noSessionsMessage}}</div>
+  <section *ngFor="let theater of theaters" class="theaters">
+    <h3>{{theater.name}}</h3>
+    <div *ngFor="let room of theater.rooms" class="rooms">
+      <div>{{room.name}}</div>
+      <div *ngFor="let session of room.sessions" class="sessions">
+        <span>{{session.time}}</span>
+        <span *ngFor="let type of session.types"><ion-badge color="light-blue">{{type.name}}</ion-badge> </span>
+      </div>
     </div>
-  </div>
-</section>
+  </section>
+</div>

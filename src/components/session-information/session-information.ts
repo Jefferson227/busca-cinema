@@ -11,8 +11,8 @@ import { Component, Input } from '@angular/core';
   templateUrl: 'session-information.html'
 })
 export class SessionInformationComponent {
-  @Input()
-  theaters: any;
+  @Input() theaters: any;
+  @Input() noSessionsMessage;
 
   constructor() {
   }

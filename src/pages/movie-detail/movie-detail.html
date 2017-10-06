@@ -31,7 +31,8 @@
       {{date}}
     </ion-segment-button>
   </ion-segment>
-  <div [hidden]="theaters.length > 0">{{noSessionsMessage}}</div>
-  <session-information [theaters]="theaters"></session-information>
+
+  <session-information [theaters]="theaters"
+    [noSessionsMessage]="noSessionsMessage"></session-information>
   <!-- <button ion-button (click)="buyTickets()">comprar ingresso</button> -->
 </ion-content>
