@@ -22,7 +22,7 @@
     <div>
       <strong>Duração:</strong> {{movie.duration}} min
     </div>
-    <div *ngIf="movie.genres && movie.genres.length > 0">
+    <div *ngIf="movie.genres && movie.genres.length">
       <strong>Gênero:</strong><span *ngFor="let genre of movie.genres"> {{genre}}</span>
     </div>
   </div>

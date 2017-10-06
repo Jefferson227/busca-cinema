@@ -49,7 +49,7 @@ export class MovieDetailPage {
       .getTheatersByMovie(t.cityId, t.movie.id, date)
       .subscribe(
         (data) => {
-          if (data && data.length > 0) {
+          if (data && data.length) {
             t.theaters = data[0].theaters;
           } else {
             t.noSessionsMessage = 'Não há sessões disponíveis para esta data.';

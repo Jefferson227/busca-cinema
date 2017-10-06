@@ -1,5 +1,5 @@
 <div padding class="session-information">
-  <div [hidden]="theaters.length > 0">{{noSessionsMessage}}</div>
+  <div [hidden]="theaters.length">{{noSessionsMessage}}</div>
   <section *ngFor="let theater of theaters" class="theaters">
     <h3>{{theater.name}}</h3>
     <div *ngFor="let room of theater.rooms" class="rooms">
