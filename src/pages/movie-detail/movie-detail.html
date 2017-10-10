@@ -14,25 +14,37 @@
 
 
 <ion-content>
-  <div padding>
-    <img [src]="movie.images[1].url" />
-    <div>
-      <strong>Classificação:</strong> {{movie.contentRating}}
-    </div>
-    <div>
-      <strong>Duração:</strong> {{movie.duration}} min
-    </div>
-    <div *ngIf="movie.genres && movie.genres.length">
-      <strong>Gênero:</strong><span *ngFor="let genre of movie.genres"> {{genre}}</span>
-    </div>
-  </div>
-  <ion-segment [(ngModel)]="segmentSessionDates" color="primary" (ionChange)="onChangeSessionDate($event)">
-    <ion-segment-button *ngFor="let date of sessionDates" [value]="date">
-      {{date}}
-    </ion-segment-button>
-  </ion-segment>
-
-  <session-information [theaters]="theaters"
-    [noSessionsMessage]="noSessionsMessage"></session-information>
-  <!-- <button ion-button (click)="buyTickets()">comprar ingresso</button> -->
+  <ion-grid>
+    <ion-row>
+      <ion-col col-12>
+        <div padding>
+          <img [src]="movie.images[1].url" />
+          <div>
+            <strong>Classificação:</strong> {{movie.contentRating}}
+          </div>
+          <div>
+            <strong>Duração:</strong> {{movie.duration}} min
+          </div>
+          <div *ngIf="movie.genres && movie.genres.length">
+            <strong>Gênero:</strong><span *ngFor="let genre of movie.genres"> {{genre}}</span>
+          </div>
+        </div>
+        <ion-segment [(ngModel)]="segmentSessionDates" color="primary" (ionChange)="onChangeSessionDate($event)">
+          <ion-segment-button *ngFor="let date of sessionDates" [value]="date">
+            {{date}}
+          </ion-segment-button>
+        </ion-segment>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col [hidden]="theaters.length" padding>{{noSessionsMessage}}</ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col *ngFor="let theater of theaters"
+        col-12 col-sm-6 col-md-4>
+        <session-information [theater]="theater"></session-information>
+      </ion-col>
+      <!-- <button ion-button (click)="buyTickets()">comprar ingresso</button> -->
+    </ion-row>
+  </ion-grid>
 </ion-content>

@@ -1,6 +1,5 @@
-<div padding class="session-information">
-  <div [hidden]="theaters.length">{{noSessionsMessage}}</div>
-  <section *ngFor="let theater of theaters" class="theaters">
+<section padding class="session-information">
+  <div class="theaters">
     <h3>{{theater.name}}</h3>
     <div *ngFor="let room of theater.rooms" class="rooms">
       <div>{{room.name}}</div>
@@ -9,5 +8,5 @@
         <span *ngFor="let type of session.types"><ion-badge color="light-blue">{{type.name}}</ion-badge> </span>
       </div>
     </div>
-  </section>
-</div>
+  </div>
+</section>
