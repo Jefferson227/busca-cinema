@@ -5,7 +5,7 @@ Busca Cinema (or Find A Theater, translated from portuguese) is a simple app to 
 Initially it's using a specific API that only fetches data from Fortaleza city in Brazil. The future idea is to expand it making it useful worldwide. But for instance, this is just a sample of what it can do.
 
 ## Demo
-Here is the live demo https://find-cinema.firebaseapp.com if you want to check it out. (It's not working for while due to CORS problems, I'm sorry).
+Here is the live demo https://find-cinema.firebaseapp.com if you want to check it out.
 
 ****
 
