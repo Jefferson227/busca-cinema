@@ -12,7 +12,6 @@ export class HomePage {
   // MOCK DATA FOR TESTING PURPOSES
   cityId = 36;
   movies;
-  states;
   loading;
 
   constructor(public navCtrl: NavController, public apiConnector: ApiConnectorProvider, public loadingProvider: LoadingProvider) {
@@ -28,12 +27,6 @@ export class HomePage {
           this.movies = data.items;
           this.loadingProvider.hide(this.loading);
         });
-  }
-
-  loadStatesData() {
-    this.apiConnector
-        .loadStates()
-        .subscribe(data => this.states = data);
   }
 
   goToDetail(movieId) {
