@@ -1,30 +1,24 @@
+import { ApiProvider } from '../api/api';
 import { Injectable } from '@angular/core';
-import { Http } from '@angular/http';
+import { HttpClient } from '@angular/common/http';
 import 'rxjs/add/operator/map';
 
 @Injectable()
-export class ApiConnectorProvider {
-  //baseUrl = '/api';
-  baseUrl = 'https://busca-cinema-backend.herokuapp.com';
+export class ApiConnectorProvider extends ApiProvider{
 
-  constructor(public http: Http) {
+  constructor(public http: HttpClient) {
+    super(http, 'https://busca-cinema-backend.herokuapp.com');
   }
 
   getMovies(cityId) {
-    return this.http
-      .get(`${this.baseUrl}/events/city/${cityId}`)
-      .map(res => res.json());
+    return this.get(`events/city/${cityId}`);
   }
 
   getMovieDetail(id) {
-    return this.http
-      .get(`${this.baseUrl}/events/${id}`)
-      .map(res => res.json());
+    return this.get(`events/${id}`);
   }
 
   getTheatersByMovie(cityId, movieId, date) {
-    return this.http
-      .get(`${this.baseUrl}/sessions/city/${cityId}/event/${movieId}/date/${date}`)
-      .map(res => res.json());
+    return this.get(`sessions/city/${cityId}/event/${movieId}/date/${date}`);
   }
 }

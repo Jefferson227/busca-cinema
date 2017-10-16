@@ -8,9 +8,10 @@ import { MyApp } from './app.component';
 import { HomePage } from '../pages/home/home';
 import { MovieDetailPage } from '../pages/movie-detail/movie-detail';
 import { ApiConnectorProvider } from '../providers/api-connector/api-connector';
-import { HttpModule } from '@angular/http';
 import { ComponentsModule } from "../components/components.module";
 import { LoadingProvider } from '../providers/loading/loading';
+import { ApiProvider } from '../providers/api/api';
+import { HttpClientModule } from "@angular/common/http";
 @NgModule({
   declarations: [
     MyApp,
@@ -19,7 +20,7 @@ import { LoadingProvider } from '../providers/loading/loading';
   ],
   imports: [
     BrowserModule,
-    HttpModule,
+    HttpClientModule,
     IonicModule.forRoot(MyApp),
     ComponentsModule,
   ],
@@ -34,7 +35,8 @@ import { LoadingProvider } from '../providers/loading/loading';
     SplashScreen,
     {provide: ErrorHandler, useClass: IonicErrorHandler},
     ApiConnectorProvider,
-    LoadingProvider
+    LoadingProvider,
+    ApiProvider,
   ]
 })
 export class AppModule {}
