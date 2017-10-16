@@ -23,7 +23,7 @@ export class HomePage {
   loadMovies() {
     this.apiConnector
         .getMovies(this.cityId)
-        .subscribe(data => {
+        .subscribe((data: any) => {
           this.movies = data.items;
           this.loadingProvider.hide(this.loading);
         });

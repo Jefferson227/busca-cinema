@@ -48,7 +48,7 @@ export class MovieDetailPage {
     this.apiConnector
       .getTheatersByMovie(t.cityId, t.movie.id, date)
       .subscribe(
-        (data) => {
+        (data: any) => {
           if (data && data.length) {
             t.theaters = data[0].theaters;
           } else {
