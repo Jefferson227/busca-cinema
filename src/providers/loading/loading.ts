@@ -9,7 +9,7 @@ import { LoadingController } from 'ionic-angular';
 */
 @Injectable()
 export class LoadingProvider {
-  message = 'Carregando...';
+  message = 'Loading...';
 
   constructor(public loadingCtrl: LoadingController) {
   }
