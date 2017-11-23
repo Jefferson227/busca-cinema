@@ -11,7 +11,7 @@ export class ApiConnectorProvider extends ApiProvider {
     super('https://busca-cinema-bck-can-mirror.herokuapp.com', http, cache);
   }
 
-  getMovies(cityId) {
+  getMovies() {
     return this.get(`movies`, {cache: true});
   }
 
