@@ -15,30 +15,30 @@ export class HomePage {
   loading;
 
   constructor(public navCtrl: NavController, public apiConnector: ApiConnectorProvider, public loadingProvider: LoadingProvider) {
-    this.loading = this.loadingProvider.initialize();
-    this.loadingProvider.show(this.loading);
-    this.loadMovies();
+    // this.loading = this.loadingProvider.initialize();
+    // this.loadingProvider.show(this.loading);
+    // this.loadMovies();
   }
 
-  loadMovies() {
-    this.apiConnector
-        .getMovies(this.cityId)
-        .subscribe((data: any) => {
-          this.movies = data.items;
-          this.loadingProvider.hide(this.loading);
-        });
-  }
+  // loadMovies() {
+  //   this.apiConnector
+  //       .getMovies(this.cityId)
+  //       .subscribe((data: any) => {
+  //         this.movies = data.items;
+  //         this.loadingProvider.hide(this.loading);
+  //       });
+  // }
 
-  goToDetail(movieId) {
-    this.apiConnector
-      .getMovieDetail(movieId)
-      .subscribe(data => {
-        let objParams = {
-          cityId: this.cityId,
-          movie: data
-        };
+  // goToDetail(movieId) {
+  //   this.apiConnector
+  //     .getMovieDetail(movieId)
+  //     .subscribe(data => {
+  //       let objParams = {
+  //         cityId: this.cityId,
+  //         movie: data
+  //       };
 
-        this.navCtrl.push(MovieDetailPage, objParams);
-      });
-  }
+  //       this.navCtrl.push(MovieDetailPage, objParams);
+  //     });
+  // }
 }

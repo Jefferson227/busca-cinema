@@ -7,6 +7,7 @@ import { CacheModule } from "ionic-cache";
 
 import { MyApp } from './app.component';
 import { HomePage } from '../pages/home/home';
+import { ListPage } from '../pages/list/list';
 import { MovieDetailPage } from '../pages/movie-detail/movie-detail';
 import { ApiConnectorProvider } from '../providers/api-connector/api-connector';
 import { ComponentsModule } from "../components/components.module";
@@ -17,6 +18,7 @@ import { HttpClientModule } from "@angular/common/http";
   declarations: [
     MyApp,
     HomePage,
+    ListPage,
     MovieDetailPage
   ],
   imports: [
@@ -30,6 +32,7 @@ import { HttpClientModule } from "@angular/common/http";
   entryComponents: [
     MyApp,
     HomePage,
+    ListPage,
     MovieDetailPage
   ],
   providers: [
