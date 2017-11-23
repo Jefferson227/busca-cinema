@@ -8,19 +8,23 @@ import 'rxjs/add/operator/map';
 export class ApiConnectorProvider extends ApiProvider {
 
   constructor(public http: HttpClient, public cache: CacheService) {
-    super('https://busca-cinema-backend-mirror.herokuapp.com', http, cache);
+    super('https://busca-cinema-bck-can-mirror.herokuapp.com', http, cache);
   }
 
   getMovies(cityId) {
-    return this.get(`events/city/${cityId}`, {cache: true});
+    return this.get(`movies`, {cache: true});
   }
 
-  getMovieDetail(id) {
-    return this.get(`events/${id}`, {cache: true});
+  getTheatersByCity(cityName) {
+    return this.get(`theaters/${cityName}`, {cache: true});
   }
 
-  getTheatersByMovie(cityId, movieId, date) {
-    return this.get(`sessions/city/${cityId}/event/${movieId}/date/${date}`, {cache: true});
+  getSessionsByTheater(theaterId, date) {
+    return this.get(`sessions/${theaterId}/${date}`, {cache: true});
+  }
+
+  getTheatersByMovie(cityName, movieId, date) {
+    return this.get(`movie/${movieId}/theaters/${cityName}/${date}`, {cache: true});
   }
 
 }
