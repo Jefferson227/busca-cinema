@@ -6,6 +6,7 @@ import 'rxjs/add/operator/map';
 
 @Injectable()
 export class ApiConnectorProvider extends ApiProvider {
+  baseUrlGoogleApi: string = 'https://maps.googleapis.com/maps/api/geocode/json?';
 
   constructor(public http: HttpClient, public cache: CacheService) {
     super('https://busca-cinema-bck-can-mirror.herokuapp.com', http, cache);
@@ -27,4 +28,11 @@ export class ApiConnectorProvider extends ApiProvider {
     return this.get(`movie/${movieId}/theaters/${cityName}/${date}`, {cache: true});
   }
 
+  getCitiesByName(cityName) {
+    return this.http.get(`${this.baseUrlGoogleApi}components=locality:fortaleza`);
+  }
+
+  getCityByLocation(lat, long) {
+    return this.http.get(`${this.baseUrlGoogleApi}latlng=${lat},${long}`);
+  }
 }
