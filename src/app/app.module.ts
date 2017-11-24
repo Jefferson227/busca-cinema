@@ -14,6 +14,7 @@ import { ComponentsModule } from "../components/components.module";
 import { LoadingProvider } from '../providers/loading/loading';
 import { ApiProvider } from '../providers/api/api';
 import { HttpClientModule } from "@angular/common/http";
+import { Geolocation } from '@ionic-native/geolocation';
 @NgModule({
   declarations: [
     MyApp,
@@ -42,6 +43,7 @@ import { HttpClientModule } from "@angular/common/http";
     ApiConnectorProvider,
     LoadingProvider,
     ApiProvider,
+    Geolocation
   ]
 })
 export class AppModule {}

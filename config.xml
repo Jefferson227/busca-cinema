@@ -88,4 +88,7 @@
     <plugin name="cordova-plugin-statusbar" spec="2.2.2" />
     <plugin name="cordova-plugin-device" spec="1.1.4" />
     <plugin name="cordova-plugin-splashscreen" spec="~4.0.1" />
+    <plugin name="cordova-plugin-geolocation" spec="~3.0.0">
+        <variable name="GEOLOCATION_USAGE_DESCRIPTION" value="To locate you" />
+    </plugin>
 </widget>

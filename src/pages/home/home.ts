@@ -3,6 +3,7 @@ import { NavController } from 'ionic-angular';
 import { ApiConnectorProvider } from '../../providers/api-connector/api-connector';
 import { LoadingProvider } from '../../providers/loading/loading';
 import { MovieDetailPage } from "../movie-detail/movie-detail";
+import { Geolocation } from '@ionic-native/geolocation';
 
 @Component({
   selector: 'page-home',
@@ -13,9 +14,16 @@ export class HomePage {
   movies: any[];
   loading: any;
 
-  constructor(public navCtrl: NavController, public apiConnector: ApiConnectorProvider, public loadingProvider: LoadingProvider) {
+  constructor(public navCtrl: NavController, public apiConnector: ApiConnectorProvider, public loadingProvider: LoadingProvider, private geolocation: Geolocation) {
     this.loading = this.loadingProvider.initialize();
     this.loadingProvider.show(this.loading);
+    this.geolocation.getCurrentPosition().then((resp) => {
+      console.log(resp);
+      // resp.coords.latitude
+      // resp.coords.longitude
+     }).catch((error) => {
+       console.log('Error getting location', error);
+     });
     this.loadMovies();
   }
 

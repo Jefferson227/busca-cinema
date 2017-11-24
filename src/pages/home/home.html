@@ -11,7 +11,8 @@
   <ion-grid>
     <ion-row>
       <ion-col col-6 col-md-4 col-lg-2 *ngFor="let movie of movies">
-          <section class="movie-chart">
+          <section class="movie-chart"
+            (click)="goToDetail(movie.id)">
             <img [src]="movie.img" />
             <div>{{movie.name}}</div>
           </section>

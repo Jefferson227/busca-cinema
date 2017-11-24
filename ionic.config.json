@@ -2,9 +2,13 @@
   "name": "BuscaCinema",
   "app_id": "",
   "type": "ionic-angular",
-  "integrations": {},
-  "proxies": [{
-    "path": "/api",
-    "proxyUrl": "https://api-content.ingresso.com/v0"
-  }]
+  "integrations": {
+    "cordova": {}
+  },
+  "proxies": [
+    {
+      "path": "/api",
+      "proxyUrl": "https://api-content.ingresso.com/v0"
+    }
+  ]
 }
