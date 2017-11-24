@@ -15,12 +15,14 @@ import { LoadingProvider } from '../providers/loading/loading';
 import { ApiProvider } from '../providers/api/api';
 import { HttpClientModule } from "@angular/common/http";
 import { Geolocation } from '@ionic-native/geolocation';
+import { LocationPage } from '../pages/location/location';
 @NgModule({
   declarations: [
     MyApp,
     HomePage,
     ListPage,
-    MovieDetailPage
+    MovieDetailPage,
+    LocationPage
   ],
   imports: [
     BrowserModule,
@@ -34,7 +36,8 @@ import { Geolocation } from '@ionic-native/geolocation';
     MyApp,
     HomePage,
     ListPage,
-    MovieDetailPage
+    MovieDetailPage,
+    LocationPage
   ],
   providers: [
     StatusBar,

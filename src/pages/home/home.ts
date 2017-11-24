@@ -4,6 +4,7 @@ import { ApiConnectorProvider } from '../../providers/api-connector/api-connecto
 import { LoadingProvider } from '../../providers/loading/loading';
 import { MovieDetailPage } from "../movie-detail/movie-detail";
 import { Geolocation } from '@ionic-native/geolocation';
+import { LocationPage } from "../location/location";
 
 @Component({
   selector: 'page-home',
@@ -29,6 +30,7 @@ export class HomePage {
        console.log('Error getting location', error);
      });
     this.loadMovies();
+    this.modalCtrl.create(LocationPage).present();
   }
 
   loadMovies() {
