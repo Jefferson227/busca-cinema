@@ -14,5 +14,16 @@
 
 
 <ion-content padding>
-  Hello modal
+  <ion-item>
+    <ion-input type="text"
+      placeholder="Type your city"
+      [(ngModel)]="txtCity"
+      (keyup)="getCitiesByName()"></ion-input>
+  </ion-item>
+
+  <ion-list>
+    <button ion-item *ngFor="let city of cities">
+      {{city}}
+    </button>
+  </ion-list>
 </ion-content>

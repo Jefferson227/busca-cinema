@@ -29,7 +29,7 @@ export class ApiConnectorProvider extends ApiProvider {
   }
 
   getCitiesByName(cityName) {
-    return this.http.get(`${this.baseUrlGoogleApi}components=locality:fortaleza`);
+    return this.http.get(`${this.baseUrlGoogleApi}components=locality:${cityName}`);
   }
 
   getCityByLocation(lat, long) {
