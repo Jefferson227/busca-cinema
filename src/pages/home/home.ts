@@ -124,6 +124,9 @@ export class HomePage {
       let locationModal = this.modalCtrl.create(LocationPage);
 
       locationModal.onDidDismiss((data: any) => {
+        localStorage.removeItem('location');
+        this.errorMessage = '';
+
         if (data) {
           this.city = data.city;
           localStorage.setItem('location', this.city);

@@ -2,9 +2,15 @@ page-home {
     .movie-chart {
         text-align: center;
     }
+
+    .clickable {
+        cursor: pointer;
+    }
+
     .message-row {
         margin: 1em 0em 1em 1em;
     }
+
     .message-row ion-icon {
         margin-right: 0.4em;
     }

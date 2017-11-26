@@ -16,11 +16,20 @@
     </ion-row>
 
     <ion-row class="message-row"
-      *ngIf="city">
+      *ngIf="!city">
+      <div>
+        <button ion-button
+          (click)="getLocation()">Get my location</button>
+      </div>
+    </ion-row>
+
+    <ion-row class="message-row clickable"
+      *ngIf="city"
+      (click)="showLocationModal()">
         <ion-icon name="pin"></ion-icon>{{city}}
     </ion-row>
 
-    <ion-row>
+    <ion-row *ngIf="city">
       <ion-col col-6 col-md-4 col-lg-2 *ngFor="let movie of movies">
           <section class="movie-chart"
             (click)="goToDetail(movie.id)">
