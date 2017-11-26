@@ -64,8 +64,14 @@ export class LocationPage {
         country = country !== undefined ? country.long_name : '';
 
         citiesFullName.push(`${cityName}, ${state} - ${country}`);
-    })
+    });
 
     return citiesFullName;
+  }
+
+  selectCity(city): void {
+    localStorage.setItem('location', city);
+    this.viewCtrl.dismiss();
+    console.log(city);
   }
 }
