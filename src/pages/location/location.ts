@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, ViewController } from 'ionic-angular';
 import { ApiConnectorProvider } from '../../providers/api-connector/api-connector';
 // import { Geolocation } from '@ionic-native/geolocation';
 
@@ -22,7 +22,8 @@ export class LocationPage {
   constructor(
     public navCtrl: NavController,
     public navParams: NavParams,
-    private apiConnector: ApiConnectorProvider
+    private apiConnector: ApiConnectorProvider,
+    private viewCtrl: ViewController
   ) {
   }
 
