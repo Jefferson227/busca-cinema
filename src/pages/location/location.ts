@@ -72,7 +72,7 @@ export class LocationPage {
 
   selectCity(city): void {
     localStorage.setItem('location', city);
-    this.viewCtrl.dismiss();
+    this.viewCtrl.dismiss({ city: city });
     console.log(city);
   }
 }

@@ -13,6 +13,7 @@ export class HomePage {
     movies: any[];
     loading: any;
     city: string;
+    errorMessage: string;
 
     constructor(public navCtrl: NavController,
         public apiConnector: ApiConnectorProvider,
@@ -22,8 +23,8 @@ export class HomePage {
       ) {
       this.loading = this.loadingProvider.initialize();
       this.loadingProvider.show(this.loading);
+      this.errorMessage = '';
       this.getLocation();
-      this.loadMovies();
     }
 
     loadMovies() {
@@ -44,10 +45,14 @@ export class HomePage {
           if (city) {
             localStorage.setItem('location', city);
             this.city = city;
+            this.loadMovies();
           }
           else {
-            this.modalCtrl.create(LocationPage).present();
+            this.showLocationModal();
           }
+        },
+        () => {
+          console.error(`Error on getting the location from the api`);
         });
     }
 
@@ -88,12 +93,13 @@ export class HomePage {
 
       if (city) {
         this.city = city;
+        this.loadMovies();
       }
       else {
         this.geolocation.getCurrentPosition().then((resp) => {
           this.getCityByLocation(resp.coords.latitude, resp.coords.longitude);
         }).catch((error) => {
-          this.modalCtrl.create(LocationPage).present();
+          this.showLocationModal();
           console.error('Error on getting location', error);
         });
       }
@@ -112,5 +118,24 @@ export class HomePage {
 
       //     this.navCtrl.push(MovieDetailPage, objParams);
       //   });
+    }
+
+    showLocationModal(): void {
+      let locationModal = this.modalCtrl.create(LocationPage);
+
+      locationModal.onDidDismiss((data: any) => {
+        if (data) {
+          this.city = data.city;
+          localStorage.setItem('location', this.city);
+          this.loadMovies();
+        }
+        else {
+          this.city = '';
+          this.errorMessage = 'City not found. Please type a correct city or allow the app to get the location from your device.';
+          this.loadingProvider.hide(this.loading);
+        }
+      });
+
+      locationModal.present();
     }
 }

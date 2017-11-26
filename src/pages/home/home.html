@@ -11,9 +11,10 @@
   <ion-grid>
 
     <ion-row class="location">
-      <div>
-         <ion-icon name="pin"></ion-icon>{{city}}
-       </div>
+      <div *ngIf="!city">{{errorMessage}}</div>
+      <div *ngIf="city">
+        <ion-icon name="pin"></ion-icon>{{city}}
+      </div>
     </ion-row>
 
     <ion-row>
