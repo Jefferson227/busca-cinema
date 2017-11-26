@@ -1,8 +1,7 @@
 import { Component } from '@angular/core';
-import { NavController, NavParams, ModalController } from 'ionic-angular';
+import { NavController, ModalController } from 'ionic-angular';
 import { ApiConnectorProvider } from '../../providers/api-connector/api-connector';
 import { LoadingProvider } from '../../providers/loading/loading';
-import { MovieDetailPage } from "../movie-detail/movie-detail";
 import { Geolocation } from '@ionic-native/geolocation';
 import { LocationPage } from "../location/location";
 
