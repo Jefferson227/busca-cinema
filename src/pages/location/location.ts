@@ -1,7 +1,6 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams, ViewController } from 'ionic-angular';
 import { ApiConnectorProvider } from '../../providers/api-connector/api-connector';
-// import { Geolocation } from '@ionic-native/geolocation';
 
 /**
  * Generated class for the LocationPage page.
