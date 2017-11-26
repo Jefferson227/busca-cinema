@@ -10,34 +10,34 @@
 <ion-content>
   <ion-grid>
 
-    <ion-row class="message-row"
-      *ngIf="errorMessage">
-      {{errorMessage}}
-    </ion-row>
+    <div *ngIf="showErrorMessage">
+      <ion-row class="message-row">
+          City not found. Please type a correct city or allow the app to get the location from your device.
+      </ion-row>
 
-    <ion-row class="message-row"
-      *ngIf="!city">
-      <div>
+      <ion-row class="message-row">
         <button ion-button
           (click)="getLocation()">Get my location</button>
-      </div>
-    </ion-row>
+      </ion-row>
+    </div>
 
-    <ion-row class="message-row clickable"
-      *ngIf="city"
-      (click)="showLocationModal()">
-        <ion-icon name="pin"></ion-icon>{{city}}
-    </ion-row>
+    <div *ngIf="!showErrorMessage">
+      <ion-row class="message-row clickable"
+        *ngIf="city"
+        (click)="showLocationModal()">
+          <ion-icon name="pin"></ion-icon>{{city}}
+      </ion-row>
 
-    <ion-row *ngIf="city">
-      <ion-col col-6 col-md-4 col-lg-2 *ngFor="let movie of movies">
-          <section class="movie-chart"
-            (click)="goToDetail(movie.id)">
-            <img [src]="movie.img" />
-            <div>{{movie.name}}</div>
-          </section>
-        <!-- <movie (click)="goToDetail(movie.id)" [movie]="movie"></movie> -->
-      </ion-col>
-    </ion-row>
+      <ion-row>
+        <ion-col col-6 col-md-4 col-lg-2 *ngFor="let movie of movies">
+            <section class="movie-chart"
+              (click)="goToDetail(movie.id)">
+              <img [src]="movie.img" />
+              <div>{{movie.name}}</div>
+            </section>
+        </ion-col>
+      </ion-row>
+    </div>
+
   </ion-grid>
 </ion-content>

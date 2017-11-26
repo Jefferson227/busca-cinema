@@ -13,7 +13,7 @@ export class HomePage {
     movies: any[];
     loading: any;
     city: string;
-    errorMessage: string;
+    showErrorMessage: boolean = false;
 
     constructor(public navCtrl: NavController,
         public apiConnector: ApiConnectorProvider,
@@ -23,7 +23,6 @@ export class HomePage {
       ) {
       this.loading = this.loadingProvider.initialize();
       this.loadingProvider.show(this.loading);
-      this.errorMessage = '';
       this.getLocation();
     }
 
@@ -124,17 +123,16 @@ export class HomePage {
       let locationModal = this.modalCtrl.create(LocationPage);
 
       locationModal.onDidDismiss((data: any) => {
-        localStorage.removeItem('location');
-        this.errorMessage = '';
+        let storedCity = localStorage.getItem('location');
 
-        if (data) {
-          this.city = data.city;
-          localStorage.setItem('location', this.city);
+        if (storedCity) {
+          this.showErrorMessage = false;
+          this.city = storedCity;
           this.loadMovies();
         }
         else {
           this.city = '';
-          this.errorMessage = 'City not found. Please type a correct city or allow the app to get the location from your device.';
+          this.showErrorMessage = true;
           this.loadingProvider.hide(this.loading);
         }
       });
