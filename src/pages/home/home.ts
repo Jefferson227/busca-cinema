@@ -4,6 +4,8 @@ import { ApiConnectorProvider } from '../../providers/api-connector/api-connecto
 import { LoadingProvider } from '../../providers/loading/loading';
 import { Geolocation } from '@ionic-native/geolocation';
 import { LocationPage } from "../location/location";
+import { MovieDetailPage } from '../movie-detail/movie-detail';
+import moment from 'moment';
 
 @Component({
   selector: 'page-home',
@@ -14,6 +16,8 @@ export class HomePage {
     loading: any;
     city: string;
     showErrorMessage: boolean = false;
+    segmentSessionDates: any[];
+    sessionDates: any[];
 
     constructor(public navCtrl: NavController,
         public apiConnector: ApiConnectorProvider,
@@ -21,6 +25,7 @@ export class HomePage {
         private geolocation: Geolocation,
         private modalCtrl: ModalController
       ) {
+      this.sessionDates = [];
       this.loading = this.loadingProvider.initialize();
       this.loadingProvider.show(this.loading);
       this.getLocation();
@@ -104,19 +109,39 @@ export class HomePage {
       }
     }
 
-    goToDetail(movieId) {
-      console.log(`Movie ${movieId} clicked`);
-      return;
-      // this.apiConnector
-      //   .getMovieDetail(movieId)
-      //   .subscribe(data => {
-      //     let objParams = {
-      //       cityId: this.cityId,
-      //       movie: data
-      //     };
+    goToDetail(movie) {
+      let date = moment(this.segmentSessionDates, 'DD/MM/YYYY').format('YYYY-MM-DD');
+      // t.theaters          = [];
+      // t.noSessionsMessage = '';
 
-      //     this.navCtrl.push(MovieDetailPage, objParams);
-      //   });
+      let cityName = this.city.split(',')[0]
+                      .trim()
+                      .toLowerCase();
+
+      console.log(`Movie ${movie.id} clicked`);
+      this.apiConnector
+        .getTheatersByMovie(cityName, movie.id, date)
+        .subscribe(
+          (data: any) => {
+            debugger;
+            let objParams = {
+              movie: data.movie,
+              img: movie.url,
+              rating: data.rating,
+              runtime: data.runtime,
+              genre: data.genre,
+              showtimes: data.showtimes
+            };
+
+            this.navCtrl.push(MovieDetailPage, objParams);
+          },
+          (error) => {
+            console.error('Error on getting theater by movie.');
+          },
+          () => {
+            this.loadingProvider.hide(this.loading);
+          }
+        );
     }
 
     showLocationModal(): void {
@@ -138,5 +163,13 @@ export class HomePage {
       });
 
       locationModal.present();
+    }
+
+    getSessionDates(moment: any) {
+      for (let i = 0; i < 4; i++) {
+        this.sessionDates.push(moment.add(i, 'days').format('DD/MM/YYYY'));
+      }
+
+      this.segmentSessionDates = this.sessionDates[0];
     }
 }

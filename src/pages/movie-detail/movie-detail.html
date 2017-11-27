@@ -7,7 +7,7 @@
 <ion-header>
 
   <ion-navbar>
-    <ion-title>{{movie.title}}</ion-title>
+    <ion-title>{{movie.movie}}</ion-title>
   </ion-navbar>
 
 </ion-header>
@@ -18,15 +18,15 @@
     <ion-row>
       <ion-col col-12>
         <div padding>
-          <img [src]="movie.images[1].url" />
+          <img [src]="movie.img" />
           <div>
-            <strong>Classificação:</strong> {{movie.contentRating}}
+            <strong>Rating:</strong> {{movie.rating}}
           </div>
           <div>
-            <strong>Duração:</strong> {{movie.duration}} min
+            <strong>Runtime:</strong> {{movie.runtime}}
           </div>
-          <div *ngIf="movie.genres && movie.genres.length">
-            <strong>Gênero:</strong><span *ngFor="let genre of movie.genres"> {{genre}}</span>
+          <div>
+            <strong>Genre:</strong> {{movie.genre}}
           </div>
         </div>
         <ion-segment [(ngModel)]="segmentSessionDates" color="primary" (ionChange)="onChangeSessionDate($event)">
@@ -36,13 +36,23 @@
         </ion-segment>
       </ion-col>
     </ion-row>
+    <!-- <ion-row>
+      <ion-col [hidden]="movie.showtimes.length" padding>{{noSessionsMessage}}</ion-col>
+    </ion-row> -->
     <ion-row>
-      <ion-col [hidden]="theaters.length" padding>{{noSessionsMessage}}</ion-col>
-    </ion-row>
-    <ion-row>
-      <ion-col *ngFor="let theater of theaters"
+      <h3>{{movie.name}}</h3>
+      <ion-col *ngFor="let showtime of movie.showtimes"
         col-12 col-sm-6 col-md-4>
-        <session-information [theater]="theater"></session-information>
+        <section padding class="session-information">
+          <div class="theaters">
+            <div>{{showtime.type}}</div>
+            <div *ngFor="let time of showtime.times" class="rooms">
+              <div class="sessions">
+                <span>{{time}}</span>
+              </div>
+            </div>
+          </div>
+        </section>
       </ion-col>
       <!-- <button ion-button (click)="buyTickets()">comprar ingresso</button> -->
     </ion-row>
