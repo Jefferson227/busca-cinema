@@ -5,7 +5,6 @@ import { LoadingProvider } from '../../providers/loading/loading';
 import { Geolocation } from '@ionic-native/geolocation';
 import { LocationPage } from "../location/location";
 import { MovieDetailPage } from '../movie-detail/movie-detail';
-import moment from 'moment';
 
 @Component({
   selector: 'page-home',
@@ -110,38 +109,11 @@ export class HomePage {
     }
 
     goToDetail(movie) {
-      let date = moment(this.segmentSessionDates, 'DD/MM/YYYY').format('YYYY-MM-DD');
-      // t.theaters          = [];
-      // t.noSessionsMessage = '';
-
-      let cityName = this.city.split(',')[0]
-                      .trim()
-                      .toLowerCase();
-
       console.log(`Movie ${movie.id} clicked`);
-      this.apiConnector
-        .getTheatersByMovie(cityName, movie.id, date)
-        .subscribe(
-          (data: any) => {
-            debugger;
-            let objParams = {
-              movie: data.movie,
-              img: movie.url,
-              rating: data.rating,
-              runtime: data.runtime,
-              genre: data.genre,
-              showtimes: data.showtimes
-            };
-
-            this.navCtrl.push(MovieDetailPage, objParams);
-          },
-          (error) => {
-            console.error('Error on getting theater by movie.');
-          },
-          () => {
-            this.loadingProvider.hide(this.loading);
-          }
-        );
+      this.navCtrl.push(MovieDetailPage, {
+        movieId: movie.id,
+        movieImg: movie.img
+      });
     }
 
     showLocationModal(): void {

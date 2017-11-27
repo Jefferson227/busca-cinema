@@ -16,45 +16,35 @@ import { LoadingProvider } from '../../providers/loading/loading';
   templateUrl: 'movie-detail.html',
 })
 export class MovieDetailPage {
-  movie: any;
   movieId: number;
+  movieImg: string;
   image: string;
   city: string;
   segmentSessionDates: any[];
   sessionDates: any[];
   loading: any;
+  showtime: any;
 
-  // movie;
-  // cityId;
-  // movieDetailsByTheater = [];
-  // theaters              = [];
-  // noSessionsMessage     = '';
-
-  constructor(public navCtrl: NavController, public navParams: NavParams, public apiConnector: ApiConnectorProvider, public loadingProvider: LoadingProvider) {
+  constructor(
+    public navCtrl: NavController,
+    public navParams: NavParams,
+    public apiConnector: ApiConnectorProvider,
+    public loadingProvider: LoadingProvider
+  ) {
     this.loading = this.loadingProvider.initialize();
     this.loadingProvider.show(this.loading);
     this.sessionDates = [];
 
-    this.movie = navParams.data.movie;
-    // this.movieId = navParams.data.movieId;
+    this.showtime = {};
+    this.movieId = navParams.data.movieId;
+    this.movieImg = navParams.data.movieImg;
     this.city = localStorage.getItem('location');
-    
-    // this.getSessionDates(moment());
-    // this.getTheatersByMovie();
-
-    // this.movie  = navParams.data.movie;
-    // this.cityId = navParams.data.cityId;
+    this.getTheatersByMovie();
+    this.getSessionDates();
   }
-
-  // buyTickets() {
-  //   alert('era pra abrir a url' + this.movie.siteURL);
-  // }
 
   getTheatersByMovie() {
     let date = moment(this.segmentSessionDates, 'DD/MM/YYYY').format('YYYY-MM-DD');
-    // t.theaters          = [];
-    // t.noSessionsMessage = '';
-
     let cityName = this.city.split(',')[0]
                     .trim()
                     .toLowerCase();
@@ -63,8 +53,7 @@ export class MovieDetailPage {
       .getTheatersByMovie(cityName, this.movieId, date)
       .subscribe(
         (data: any) => {
-          debugger;
-          this.movie = data;
+          this.showtime = data;
           console.log(data);
         },
         (error) => {
@@ -76,9 +65,9 @@ export class MovieDetailPage {
       );
   }
 
-  getSessionDates(moment: any) {
+  getSessionDates() {
     for (let i = 0; i < 4; i++) {
-      this.sessionDates.push(moment.add(i, 'days').format('DD/MM/YYYY'));
+      this.sessionDates.push(moment().add(i, 'days').format('DD/MM/YYYY'));
     }
 
     this.segmentSessionDates = this.sessionDates[0];

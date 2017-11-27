@@ -7,7 +7,7 @@
 <ion-header>
 
   <ion-navbar>
-    <ion-title>{{movie.movie}}</ion-title>
+    <ion-title>{{showtime.title}}</ion-title>
   </ion-navbar>
 
 </ion-header>
@@ -18,15 +18,15 @@
     <ion-row>
       <ion-col col-12>
         <div padding>
-          <img [src]="movie.img" />
+          <img [src]="movieImg" />
           <div>
-            <strong>Rating:</strong> {{movie.rating}}
+            <strong>Rating:</strong> {{showtime.rating}}
           </div>
           <div>
-            <strong>Runtime:</strong> {{movie.runtime}}
+            <strong>Runtime:</strong> {{showtime.runtime}}
           </div>
           <div>
-            <strong>Genre:</strong> {{movie.genre}}
+            <strong>Genre:</strong> {{showtime.genre}}
           </div>
         </div>
         <ion-segment [(ngModel)]="segmentSessionDates" color="primary" (ionChange)="onChangeSessionDate($event)">
@@ -37,18 +37,19 @@
       </ion-col>
     </ion-row>
     <!-- <ion-row>
-      <ion-col [hidden]="movie.showtimes.length" padding>{{noSessionsMessage}}</ion-col>
+      <ion-col [hidden]="showtime.sessions.length" padding>{{noSessionsMessage}}</ion-col>
     </ion-row> -->
     <ion-row>
-      <h3>{{movie.name}}</h3>
-      <ion-col *ngFor="let showtime of movie.showtimes"
+      <ion-col *ngFor="let session of showtime.sessions"
         col-12 col-sm-6 col-md-4>
         <section padding class="session-information">
-          <div class="theaters">
-            <div>{{showtime.type}}</div>
-            <div *ngFor="let time of showtime.times" class="rooms">
+          <h3>{{session.theater}}</h3>
+          <div class="theaters"
+            *ngFor="let sessionShowtime of session.showtimes">
+            <div>{{sessionShowtime.type}}</div>
+            <div class="rooms">
               <div class="sessions">
-                <span>{{time}}</span>
+                <span *ngFor="let time of sessionShowtime.times">{{time}} </span>
               </div>
             </div>
           </div>
