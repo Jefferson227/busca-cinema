@@ -39,11 +39,11 @@ export class HomePage {
           });
     }
 
-    getCityByLocation(lat: number, long: number): void {
+    getCityByLocation(long: number, lat: number): void {
       this.apiConnector
-        .getCityByLocation(lat, long)
-        .subscribe((position: any) => {
-          let city: string = this.getCityNameByCoordinates(position);
+        .getCityByLocation(long, lat)
+        .subscribe((data: any) => {
+          let city: string = this.getCityNameByCoordinates(data);
 
           if (city) {
             localStorage.setItem('location', city);
@@ -59,33 +59,9 @@ export class HomePage {
         });
     }
 
-    getCityNameByCoordinates(position): string {
-      if (position.results.length) {
-
-        let firstPosition = position.results[0];
-
-        let cityName = firstPosition.address_components.map((i) => {
-            if (i.types.includes('locality')) {
-                return i;
-            }
-        })
-        .filter((f) => f !== undefined)[0].long_name;
-
-        let state = firstPosition.address_components.map((i) => {
-            if (i.types.includes('administrative_area_level_1')) {
-                return i;
-            }
-        })
-        .filter((f) => f !== undefined)[0].long_name;
-
-        let country = firstPosition.address_components.map((i) => {
-            if (i.types.includes('country')) {
-                return i;
-            }
-        })
-        .filter((f) => f !== undefined)[0].long_name;
-
-        return `${cityName}, ${state} - ${country}`;
+    getCityNameByCoordinates(data: any): string {
+      if (data && data.features && data.features.length) {
+        return data.features[0].place_name;
       }
 
       return '';
@@ -100,7 +76,7 @@ export class HomePage {
       }
       else {
         this.geolocation.getCurrentPosition().then((resp) => {
-          this.getCityByLocation(resp.coords.latitude, resp.coords.longitude);
+          this.getCityByLocation(resp.coords.longitude, resp.coords.latitude);
         }).catch((error) => {
           this.showLocationModal();
           console.error('Error on getting location', error);

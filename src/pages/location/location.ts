@@ -31,47 +31,27 @@ export class LocationPage {
     clearTimeout(this.timeout);
 
     this.timeout = setTimeout(() => {
-      this.apiConnector
-        .getCitiesByName(this.txtCity)
-        .subscribe((cities: any) => {
-          this.cities = this.extractCityNames(cities);
-        });
+      if (this.txtCity) {
+        this.apiConnector
+          .getCitiesByName(this.txtCity)
+          .subscribe((cities: any) => {
+            this.cities = this.extractCityNames(cities);
+          });
+      }
+      else {
+        this.cities = [];
+      }
     }, 500);
   }
 
   extractCityNames(cities) {
-    let citiesFullName = [];
+    if (cities && cities.features && cities.features.length) {
+      return cities.features.map((feature) => {
+        return feature.place_name;
+      });
+    }
 
-    cities.results.forEach((city) => {
-        let cityName = city.address_components.map((i) => {
-            if (i.types.includes('locality')) {
-                return i;
-            }
-        })
-        .filter((f) => f !== undefined)[0];
-
-        let state = city.address_components.map((i) => {
-            if (i.types.includes('administrative_area_level_1')) {
-                return i;
-            }
-        })
-        .filter((f) => f !== undefined)[0];
-
-        let country = city.address_components.map((i) => {
-            if (i.types.includes('country')) {
-                return i;
-            }
-        })
-        .filter((f) => f !== undefined)[0];
-
-        cityName = cityName !== undefined ? cityName.long_name : '';
-        state = state !== undefined ? state.long_name : '';
-        country = country !== undefined ? country.long_name : '';
-
-        citiesFullName.push(`${cityName}, ${state} - ${country}`);
-    });
-
-    return citiesFullName;
+    return [];
   }
 
   selectCity(city): void {

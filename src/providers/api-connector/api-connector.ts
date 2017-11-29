@@ -6,7 +6,9 @@ import 'rxjs/add/operator/map';
 
 @Injectable()
 export class ApiConnectorProvider extends ApiProvider {
-  baseUrlGoogleApi: string = 'https://maps.googleapis.com/maps/api/geocode/json?';
+  baseUrlMapBox: string = `https://api.mapbox.com/geocoding/v5/mapbox.places/SEARCH_TERM.json?`;
+  mapBoxAccessToken: string = 'access_token=pk.eyJ1IjoiamNtdWxsZXIiLCJhIjoiY2l2YmI2ZG82MDA4bzJ6b3UwNTB1enkycSJ9.oRrvDNk1PKKA76v6qSRFXg';
+  mapBoxOptions: string = '&autocomplete=true&types=place%2Clocality';
 
   constructor(public http: HttpClient, public cache: CacheService) {
     super('https://busca-cinema-bck-can-mirror.herokuapp.com', http, cache);
@@ -29,10 +31,17 @@ export class ApiConnectorProvider extends ApiProvider {
   }
 
   getCitiesByName(cityName) {
-    return this.http.get(`${this.baseUrlGoogleApi}components=locality:${cityName}`);
+    return this.http.get(this.getUrlMapBox(cityName, true));
   }
 
-  getCityByLocation(lat, long) {
-    return this.http.get(`${this.baseUrlGoogleApi}latlng=${lat},${long}`);
+  getCityByLocation(long, lat) {
+    return this.http.get(this.getUrlMapBox(`${long},${lat}`, false));
+  }
+
+  getUrlMapBox(term: string, hasLimit: boolean): any {
+    let baseUrl = this.baseUrlMapBox.replace('SEARCH_TERM', term);
+    let limit = hasLimit ? '&limit=10' : '';
+
+    return baseUrl + this.mapBoxAccessToken + this.mapBoxOptions + limit;
   }
 }
