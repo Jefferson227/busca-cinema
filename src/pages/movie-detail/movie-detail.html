@@ -7,7 +7,7 @@
 <ion-header>
 
   <ion-navbar>
-    <ion-title>{{showtime.title}}</ion-title>
+    <ion-title>{{movieName}}</ion-title>
   </ion-navbar>
 
 </ion-header>
@@ -20,13 +20,16 @@
         <div padding>
           <img [src]="movieImg" />
           <div>
-            <strong>Rating:</strong> {{showtime.rating}}
+            <strong>IMDB rating:</strong> {{movieInfo.imdbRating}}
           </div>
           <div>
-            <strong>Runtime:</strong> {{showtime.runtime}}
+            <strong>Rating:</strong> {{movieInfo.Rated}}
           </div>
           <div>
-            <strong>Genre:</strong> {{showtime.genre}}
+            <strong>Runtime:</strong> {{movieInfo.Runtime}}
+          </div>
+          <div>
+            <strong>Genre:</strong> {{movieInfo.Genre}}
           </div>
         </div>
         <ion-segment [(ngModel)]="segmentSessionDates" color="primary" (ionChange)="onChangeSessionDate($event)">

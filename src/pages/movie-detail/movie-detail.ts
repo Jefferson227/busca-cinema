@@ -16,8 +16,10 @@ import { LoadingProvider } from '../../providers/loading/loading';
   templateUrl: 'movie-detail.html',
 })
 export class MovieDetailPage {
+  movieName: string;
   movieId: number;
   movieImg: string;
+  movieInfo: any;
   image: string;
   city: string;
   segmentSessionDates: any[];
@@ -36,11 +38,22 @@ export class MovieDetailPage {
     this.sessionDates = [];
 
     this.showtime = {};
+    this.movieInfo = {};
+    this.movieName = navParams.data.movieName;
     this.movieId = navParams.data.movieId;
     this.movieImg = navParams.data.movieImg;
     this.city = localStorage.getItem('location');
     this.getSessionDates();
     this.getTheatersByMovie();
+    this.getMovieInfo();
+  }
+
+  getMovieInfo(): void {
+    this.apiConnector
+      .getMovieInfo(this.movieName)
+        .subscribe((info) => {
+          this.movieInfo = info;
+        });
   }
 
   getTheatersByMovie() {
@@ -54,7 +67,6 @@ export class MovieDetailPage {
       .subscribe(
         (data: any) => {
           this.showtime = data;
-          console.log(data);
         },
         (error) => {
           console.error('Error on getting theater by movie.');
