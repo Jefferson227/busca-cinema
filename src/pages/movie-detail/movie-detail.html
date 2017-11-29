@@ -64,7 +64,9 @@
             <div>{{sessionShowtime.type}}</div>
             <div class="rooms">
               <div class="sessions">
-                <span *ngFor="let time of sessionShowtime.times">{{time}} </span>
+                <ion-chip *ngFor="let time of sessionShowtime.times">
+                  <ion-label>{{time}}</ion-label>
+                </ion-chip>
               </div>
             </div>
           </div>
