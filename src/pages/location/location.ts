@@ -17,6 +17,7 @@ import { ApiConnectorProvider } from '../../providers/api-connector/api-connecto
 export class LocationPage {
   txtCity: string;
   cities: string[];
+  timeout: any = null;
 
   constructor(
     public navCtrl: NavController,
@@ -27,11 +28,15 @@ export class LocationPage {
   }
 
   getCitiesByName() {
-    this.apiConnector
-      .getCitiesByName(this.txtCity)
-      .subscribe((cities: any) => {
-        this.cities = this.extractCityNames(cities);
-      });
+    clearTimeout(this.timeout);
+
+    this.timeout = setTimeout(() => {
+      this.apiConnector
+        .getCitiesByName(this.txtCity)
+        .subscribe((cities: any) => {
+          this.cities = this.extractCityNames(cities);
+        });
+    }, 500);
   }
 
   extractCityNames(cities) {
