@@ -39,11 +39,23 @@
         </ion-segment>
       </ion-col>
     </ion-row>
-    <!-- <ion-row>
-      <ion-col [hidden]="showtime.sessions.length" padding>{{noSessionsMessage}}</ion-col>
-    </ion-row> -->
+
     <ion-row>
-      <ion-col *ngFor="let session of showtime.sessions"
+      <ion-col *ngIf="!sessions.length && !showMovieLoader" padding>There's no showtimes for this date.</ion-col>
+    </ion-row>
+
+    <ion-row>
+      <ion-col *ngIf="showMovieLoader" padding>
+        <div class="spinner">
+          <div class="bounce1"></div>
+          <div class="bounce2"></div>
+          <div class="bounce3"></div>
+        </div>
+      </ion-col>
+    </ion-row>
+
+    <ion-row [hidden]="showMovieLoader">
+      <ion-col *ngFor="let session of sessions"
         col-12 col-sm-6 col-md-4>
         <section padding class="session-information">
           <h3>{{session.theater}}</h3>

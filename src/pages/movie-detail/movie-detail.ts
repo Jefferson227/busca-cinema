@@ -20,6 +20,8 @@ export class MovieDetailPage {
   movieId: number;
   movieImg: string;
   movieInfo: any;
+  showMovieLoader: boolean = true;
+  sessions: any[];
   image: string;
   city: string;
   segmentSessionDates: any[];
@@ -39,6 +41,7 @@ export class MovieDetailPage {
 
     this.showtime = {};
     this.movieInfo = {};
+    this.sessions = [];
     this.movieName = navParams.data.movieName;
     this.movieId = navParams.data.movieId;
     this.movieImg = navParams.data.movieImg;
@@ -53,7 +56,11 @@ export class MovieDetailPage {
       .getMovieInfo(this.movieName)
         .subscribe((info) => {
           this.movieInfo = info;
-        });
+          this.loadingProvider.hide(this.loading);
+        }),
+        (error) => {
+          console.error('Error on getting theater by movie.');
+        }
   }
 
   getTheatersByMovie() {
@@ -66,13 +73,15 @@ export class MovieDetailPage {
       .getTheatersByMovie(cityName, this.movieId, date)
       .subscribe(
         (data: any) => {
-          this.showtime = data;
+          if (data.sessions && data.sessions.length) {
+            this.sessions = data.sessions;
+          }
         },
         (error) => {
-          console.error('Error on getting theater by movie.');
+          console.error('Error on getting theaters from the movie.');
         },
         () => {
-          this.loadingProvider.hide(this.loading);
+          this.showMovieLoader = false;
         }
       );
   }
@@ -87,7 +96,7 @@ export class MovieDetailPage {
 
   onChangeSessionDate(event) {
     this.loading = this.loadingProvider.initialize();
-    this.loadingProvider.show(this.loading);
+    this.showMovieLoader = true;
     this.getTheatersByMovie();
   }
 }
