@@ -39,8 +39,8 @@ export class MovieDetailPage {
     this.movieId = navParams.data.movieId;
     this.movieImg = navParams.data.movieImg;
     this.city = localStorage.getItem('location');
-    this.getTheatersByMovie();
     this.getSessionDates();
+    this.getTheatersByMovie();
   }
 
   getTheatersByMovie() {
