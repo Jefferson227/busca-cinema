@@ -15,6 +15,8 @@ export class HomePage {
     loading: any;
     city: string;
     showErrorMessage: boolean = false;
+    showCityNotFoundMessage: boolean = false;
+    showIsNotCanadianCityMessage: boolean = false;
     segmentSessionDates: any[];
     sessionDates: any[];
 
@@ -48,7 +50,13 @@ export class HomePage {
           if (city) {
             localStorage.setItem('location', city);
             this.city = city;
-            this.loadMovies();
+
+            if (this.checkIfLocationIsInCanada()) {
+              this.loadMovies();
+            }
+            else {
+              this.showLocationModal();
+            }
           }
           else {
             this.showLocationModal();
@@ -71,8 +79,13 @@ export class HomePage {
       let city: string = localStorage.getItem('location');
 
       if (city) {
-        this.city = city;
-        this.loadMovies();
+        if (this.checkIfLocationIsInCanada()) {
+          this.city = city;
+          this.loadMovies();
+        }
+        else {
+          this.showLocationModal();
+        }
       }
       else {
         this.geolocation.getCurrentPosition().then((resp) => {
@@ -100,13 +113,29 @@ export class HomePage {
         let storedCity = localStorage.getItem('location');
 
         if (storedCity) {
-          this.showErrorMessage = false;
-          this.city = storedCity;
-          this.loadMovies();
+          if (this.checkIfLocationIsInCanada()) {
+            this.showErrorMessage = false;
+            this.showCityNotFoundMessage = false;
+            this.showIsNotCanadianCityMessage = false;
+
+            this.city = storedCity;
+            this.loadMovies();
+          }
+          else {
+            this.showErrorMessage = true;
+            this.showCityNotFoundMessage = false;
+            this.showIsNotCanadianCityMessage = true;
+
+            this.city = '';
+            this.loadingProvider.hide(this.loading);
+          }
         }
         else {
-          this.city = '';
           this.showErrorMessage = true;
+          this.showCityNotFoundMessage = true;
+          this.showIsNotCanadianCityMessage = false;
+
+          this.city = '';
           this.loadingProvider.hide(this.loading);
         }
       });
@@ -120,5 +149,22 @@ export class HomePage {
       }
 
       this.segmentSessionDates = this.sessionDates[0];
+    }
+
+    checkIfLocationIsInCanada(): boolean {
+      let location = localStorage.getItem('location');
+
+      if (location) {
+        let country = location
+                        .split(',')[2]
+                        .trim()
+                        .toLocaleLowerCase();
+
+        if (country === 'canada') {
+          return true;
+        }
+      }
+
+      return false;
     }
 }
