@@ -5,16 +5,17 @@
     </ion-toolbar>
   </ion-header>
 
-  <ion-content>
-    <div style="text-align: center; margin: 1em;">Calm down this is still being implemented and it will be available soon :)</div>
-    <!-- <ion-list>
+  <!-- Uncomment the code below and put a #content on the <ion-nav> to activate the sidemenu -->
+
+  <!-- <ion-content>
+    <ion-list>
       <button menuClose ion-item *ngFor="let p of pages" (click)="openPage(p)">
         {{p.title}}
       </button>
-    </ion-list> -->
-  </ion-content>
+    </ion-list>
+  </ion-content> -->
 
 </ion-menu>
 
 <!-- Disable swipe-to-go-back because it's poor UX to combine STGB with side menus -->
-<ion-nav [root]="rootPage" #content swipeBackEnabled="false"></ion-nav>
+<ion-nav [root]="rootPage" swipeBackEnabled="false"></ion-nav>
