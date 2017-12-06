@@ -2,10 +2,18 @@
 
 Busca Cinema (or Find a Theater, translated from portuguese) is a simple app to show the current movies on theaters and its sessions' informations such as rooms, time, 3D, 2D, subtitled, etc.
 
-Initially it's using a specific API that only fetches data from Fortaleza city in Brazil. The future idea is to expand it making it useful worldwide. But for instance, this is just a sample of what it can do.
+For while it's divided into two branches:
 
-## The App
-Here is the app running https://buscacinema.com if you want to check this out.
+* `master` only for my city (Fortaleza, Brazil)
+* `feature/find-a-theater` for cities all over Canada
+
+## The backend
+It's another project that I also keep [here](https://github.com/Jefferson227/busca-cinema-backend) on GitHub.
+
+## The app
+Here is the app running https://buscacinema.com (the brazilian version) if you want to check this out.
+
+Here is the link for the canadian version: https://find-a-theater.firebaseapp.com
 
 ****
 
