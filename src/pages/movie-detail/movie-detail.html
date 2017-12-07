@@ -17,8 +17,10 @@
   <ion-grid>
     <ion-row>
       <ion-col col-12>
-        <div padding>
-          <img [src]="movieImg" />
+        <div padding
+          class="movie-chart">
+          <img [src]="movieImg"
+            class="image" />
           <div>
             <strong>IMDB rating:</strong> {{movieInfo.imdbRating}}
           </div>
