@@ -55,7 +55,11 @@ export class HomePage {
               this.loadMovies();
             }
             else {
-              this.showLocationModal();
+              this.showErrorMessage = true;
+              this.showCityNotFoundMessage = false;
+              this.showIsNotCanadianCityMessage = true;
+
+              this.loadingProvider.hide(this.loading);
             }
           }
           else {
