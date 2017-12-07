@@ -16,12 +16,29 @@
 <ion-content>
   <ion-grid>
     <ion-row>
-      <ion-col col-12>
+
+      <ion-col col-7 col-sm-5>
         <div padding
           class="movie-chart">
-          <img [src]="movieImg"
-            class="image" />
-          <div>
+            <img [src]="movieImg"
+              class="image" />
+        </div>
+      </ion-col>
+
+      <ion-col col-5 col-sm-7>
+        <div padding>
+          <h3>{{movieName}}</h3>
+          <div class="imdb-rating">
+            <span class="number">{{movieInfo.imdbRating}}</span>
+            <ion-icon name="star"></ion-icon>
+            <ion-icon name="star"></ion-icon>
+            <ion-icon name="star"></ion-icon>
+            <ion-icon name="star"></ion-icon>
+            <ion-icon name="star"></ion-icon>
+          </div>
+          <div>{{movieInfo.Genre}}</div>
+          <div>{{movieInfo.Runtime}}</div>
+          <!-- <div>
             <strong>IMDB rating:</strong> {{movieInfo.imdbRating}}
           </div>
           <div>
@@ -29,17 +46,18 @@
           </div>
           <div>
             <strong>Runtime:</strong> {{movieInfo.Runtime}}
-          </div>
-          <div>
-            <strong>Genre:</strong> {{movieInfo.Genre}}
-          </div>
+          </div> -->
         </div>
-        <ion-segment [(ngModel)]="segmentSessionDates" color="primary" (ionChange)="onChangeSessionDate($event)">
-          <ion-segment-button *ngFor="let date of sessionDates" [value]="date">
-            {{date}}
-          </ion-segment-button>
-        </ion-segment>
       </ion-col>
+
+    </ion-row>
+
+    <ion-row>
+      <ion-segment [(ngModel)]="segmentSessionDates" color="primary" (ionChange)="onChangeSessionDate($event)">
+        <ion-segment-button *ngFor="let date of sessionDates" [value]="date">
+          {{date}}
+        </ion-segment-button>
+      </ion-segment>
     </ion-row>
 
     <ion-row>
