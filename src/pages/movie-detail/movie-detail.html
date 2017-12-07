@@ -17,7 +17,7 @@
   <ion-grid>
     <ion-row>
 
-      <ion-col col-7 col-sm-5>
+      <ion-col col-7 col-sm-5 col-md-3 col-lg-3 col-xl-2>
         <div padding
           class="movie-chart">
             <img [src]="movieImg"
@@ -25,11 +25,11 @@
         </div>
       </ion-col>
 
-      <ion-col col-5 col-sm-7>
+      <ion-col col-5 col-sm-7 col-md-3 col-lg-9 col-xl-10>
         <div padding>
           <h3>{{movieName}}</h3>
           <div class="imdb-rating">
-            <span class="number">{{movieInfo.imdbRating}}</span>
+            <div class="number">{{movieInfo.imdbRating}}</div>
             <ion-icon name="star"></ion-icon>
             <ion-icon name="star"></ion-icon>
             <ion-icon name="star"></ion-icon>
