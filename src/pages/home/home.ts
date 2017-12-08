@@ -102,7 +102,6 @@ export class HomePage {
     }
 
     goToDetail(movie) {
-      console.log(`Movie ${movie.id} clicked`);
       this.navCtrl.push(MovieDetailPage, {
         movieName: movie.name,
         movieId: movie.id,
