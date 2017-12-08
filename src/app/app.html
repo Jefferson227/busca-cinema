@@ -1,21 +1,21 @@
-<ion-menu [content]="content">
+<!-- Uncomment the code below to make the sidemenu visible -->
+
+<!-- <ion-menu [root]="rootPage">
   <ion-header>
     <ion-toolbar>
       <ion-title>Menu</ion-title>
     </ion-toolbar>
   </ion-header>
 
-  <!-- Uncomment the code below and put a #content on the <ion-nav> to activate the sidemenu -->
-
-  <!-- <ion-content>
+  <ion-content>
     <ion-list>
       <button menuClose ion-item *ngFor="let p of pages" (click)="openPage(p)">
         {{p.title}}
       </button>
     </ion-list>
-  </ion-content> -->
+  </ion-content>
 
-</ion-menu>
+</ion-menu> -->
 
 <!-- Disable swipe-to-go-back because it's poor UX to combine STGB with side menus -->
 <ion-nav [root]="rootPage" swipeBackEnabled="false"></ion-nav>
