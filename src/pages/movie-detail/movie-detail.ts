@@ -2,7 +2,6 @@ import { Component } from '@angular/core';
 import { NavController, NavParams } from 'ionic-angular';
 import { ApiConnectorProvider } from '../../providers/api-connector/api-connector';
 import moment from 'moment';
-import { LoadingProvider } from '../../providers/loading/loading';
 
 /**
  * Generated class for the MovieDetailPage page.
@@ -34,13 +33,9 @@ export class MovieDetailPage {
   constructor(
     public navCtrl: NavController,
     public navParams: NavParams,
-    public apiConnector: ApiConnectorProvider,
-    public loadingProvider: LoadingProvider
+    public apiConnector: ApiConnectorProvider
   ) {
-    this.loading = this.loadingProvider.initialize();
-    this.loadingProvider.show(this.loading);
     this.sessionDates = [];
-
     this.showtime = {};
     this.movieInfo = {};
     this.sessions = [];
