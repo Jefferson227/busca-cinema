@@ -24,9 +24,15 @@
         </div>
       </ion-col>
 
-      <ion-col col-5 col-sm-7 col-md-3 col-lg-9 col-xl-10>
-        <div padding>
-          <h3>{{movieName}}</h3>
+      <ion-col col-5 col-sm-7 col-md-3 col-lg-9 col-xl-10
+        padding>
+        <h3>{{movieName}}</h3>
+
+        <div *ngIf="showMovieInfoLoader">
+          <spinner-1></spinner-1>
+        </div>
+
+        <div *ngIf="!showMovieInfoLoader && !hasErrorOnLoadMovieInfo">
           <div class="imdb-rating">
             <div class="number">{{movieInfo.imdbRating}}</div>
             <ion-icon name="star"></ion-icon>
@@ -37,15 +43,10 @@
           </div>
           <div>{{movieInfo.Genre}}</div>
           <div>{{movieInfo.Runtime}}</div>
-          <!-- <div>
-            <strong>IMDB rating:</strong> {{movieInfo.imdbRating}}
-          </div>
-          <div>
-            <strong>Rating:</strong> {{movieInfo.Rated}}
-          </div>
-          <div>
-            <strong>Runtime:</strong> {{movieInfo.Runtime}}
-          </div> -->
+        </div>
+
+        <div *ngIf="hasErrorOnLoadMovieInfo">
+          Couldn't get the movie info, please go back and try again.
         </div>
       </ion-col>
 
@@ -65,11 +66,7 @@
 
     <ion-row>
       <ion-col *ngIf="showMovieLoader" padding>
-        <div class="spinner">
-          <div class="bounce1"></div>
-          <div class="bounce2"></div>
-          <div class="bounce3"></div>
-        </div>
+        <spinner-2></spinner-2>
       </ion-col>
     </ion-row>
 

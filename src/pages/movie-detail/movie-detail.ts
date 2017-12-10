@@ -21,6 +21,8 @@ export class MovieDetailPage {
   movieImg: string;
   movieInfo: any;
   showMovieLoader: boolean = true;
+  showMovieInfoLoader: boolean = true;
+  hasErrorOnLoadMovieInfo: boolean = false;
   sessions: any[];
   image: string;
   city: string;
@@ -56,11 +58,13 @@ export class MovieDetailPage {
       .getMovieInfo(this.movieName)
         .subscribe((info) => {
           this.movieInfo = info;
-          this.loadingProvider.hide(this.loading);
-        }),
+        },
         (error) => {
           console.error('Error on getting theater by movie.');
-        }
+        },
+        () => {
+          this.showMovieInfoLoader = false;
+        });
   }
 
   getTheatersByMovie() {
