@@ -19,4 +19,11 @@ page-home {
     .message-row ion-icon {
         margin-right: 0.4em;
     }
+
+    .message-row .location {
+        padding: 1em;
+        background: rgba(26, 135, 208, 0.5);
+        border-radius: 0.5em;
+        box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    }
 }

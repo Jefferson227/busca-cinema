@@ -31,7 +31,7 @@
       <ion-row class="message-row clickable"
         *ngIf="city"
         (click)="showLocationModal()">
-          <ion-icon name="pin"></ion-icon>{{city}}
+          <span class="location"><ion-icon name="pin"></ion-icon>{{city}}</span>
       </ion-row>
 
       <ion-row>
