@@ -27,7 +27,6 @@ export class MovieDetailPage {
   city: string;
   segmentSessionDates: any[];
   sessionDates: any[];
-  loading: any;
   showtime: any;
 
   constructor(
@@ -94,7 +93,6 @@ export class MovieDetailPage {
   }
 
   onChangeSessionDate(event) {
-    this.loading = this.loadingProvider.initialize();
     this.showMovieLoader = true;
     this.getTheatersByMovie();
   }
