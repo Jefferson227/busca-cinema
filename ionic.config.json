@@ -1,0 +1,8 @@
+{
+  "name": "busca-cinema",
+  "app_id": "",
+  "type": "ionic-angular",
+  "integrations": {
+    "cordova": {}
+  }
+}
