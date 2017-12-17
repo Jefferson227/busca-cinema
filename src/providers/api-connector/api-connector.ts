@@ -9,15 +9,20 @@ import { Injectable } from '@angular/core';
 */
 @Injectable()
 export class ApiConnectorProvider {
+  // Base URLs
+  buscaCinemaBaseUrl: string = 'http://busca-cinema-bck-can-mirror.herokuapp.com';
+  theMovieDdBaseUrl: string = 'https://api.themoviedb.org/3/search/movie?api_key=5161994a2b7c39573e265db702445c78';
 
   constructor(public http: HttpClient) {
   }
 
+  // Get all movies
   getMovies(): any {
-    return this.http.get('http://busca-cinema-bck-can-mirror.herokuapp.com/movies');
+    return this.http.get(`${this.buscaCinemaBaseUrl}/movies`);
   }
 
+  // Get details from a movie
   getMovieDetails(movieTitle: string): any {
-    return this.http.get(`https://api.themoviedb.org/3/search/movie?api_key=5161994a2b7c39573e265db702445c78&query=${movieTitle}`);
+    return this.http.get(`${this.theMovieDdBaseUrl}&query=${movieTitle}`);
   }
 }
