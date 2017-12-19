@@ -18,7 +18,7 @@ export class HomePage {
     // Getting all movies
     this._apiConnector.getMovies()
       .subscribe(movies => {
-        // For each movies, getting its respecitve detail
+        // For each movie, getting its respecitve detail
         movies.forEach((movie) => {
           this._apiConnector.getMovieDetails(movie.name)
             .subscribe(movieDetails => {
