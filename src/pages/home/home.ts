@@ -30,7 +30,22 @@ export class HomePage {
 
                 this.movies.push(details);
               }
-            });
+            },
+            err => console.error(err),
+            () => this.movies.sort((a, b) => {
+              // Put the movies in order by release date
+              const aTime = new Date(a.release_date).getTime();
+              const bTime = new Date(b.release_date).getTime();
+
+              if (aTime > bTime) {
+                return -1;
+              }
+              else if (bTime > aTime) {
+                return 1;
+              }
+
+              return 0;
+            }));
         });
       });
   }
