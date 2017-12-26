@@ -1,3 +1,22 @@
 page-home {
+    .movie-title {
+        display: inline-block;
+        width: 50%;
+        position: absolute;
+        margin-top: -78px;
+        margin-left: 10px;
+        font-size: 20px;
+        color: white;
+    }
 
+    .movie-title-rating {
+        text-align: right;
+        width: 87%;
+    }
+
+    .movie-chart::after {
+        content: '';
+        position: absolute;
+        background: linear-gradient(to top, black, transparent);
+    }
 }
