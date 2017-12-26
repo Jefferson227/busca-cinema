@@ -6,8 +6,13 @@
 
 <ion-content>
   <ion-card *ngFor="let movie of movies">
-    <div>
-      <img [src]="movie.backdrop_fullpath">
+    <div class="movie-container">
+      <img class="movie-chart" [src]="movie.backdrop_fullpath">
+
+      <div class="movie-title-container">
+        <div class="movie-title">{{movie.title}}</div>
+        <div class="movie-title movie-title-rating">{{movie.vote_average}}</div>
+      </div>
     </div>
   </ion-card>
 </ion-content>

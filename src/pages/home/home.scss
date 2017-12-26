@@ -1,3 +1,26 @@
 page-home {
+    .movie-title {
+      padding: 30px 30px 20px 20px;
+      max-width: 80%;
+    }
 
+    .movie-container {
+      position: relative;
+    }
+
+    .movie-title-rating {
+      position: absolute;
+      right: 0;
+      bottom: 0;
+    }
+
+    .movie-title-container {
+      position: absolute;
+      bottom: 0;
+      right: 0;
+      left: 0;
+      background: linear-gradient(to bottom,transparent 0,rgba(0,0,0,1) 100%);
+      color: #eee;
+      font-size: 23px;
+    }
 }
