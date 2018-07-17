@@ -27,6 +27,7 @@ export class HomePage {
 
                 details.backdrop_fullpath = `${this.baseUrlImage}${details.backdrop_path}`;
                 details.poster_fullpath = `${this.baseUrlImage}${details.poster_path}`;
+                details.imageHasLoaded = details.backdrop_path ? true : false;
 
                 this.movies.push(details);
               }
