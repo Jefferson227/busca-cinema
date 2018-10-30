@@ -1,6 +1,6 @@
 # busca-cinema
 
-Busca Cinema (or Find a Theater, translated from portuguese) is a simple app to show the current movies on theaters and its sessions' informations such as rooms, time, 3D, 2D, subtitled, etc.
+Busca Cinema (or Find a Theater, translated from portuguese) is a simple app to show the current movies on theaters and its sessions' information such as rooms, time, 3D, 2D, subtitled, etc.
 
 For while it's divided into two branches:
 
