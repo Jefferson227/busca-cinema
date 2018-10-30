@@ -5,13 +5,13 @@ Busca Cinema (or Find a Theater, translated from Portuguese) is a simple app to 
 For while it's divided into two branches:
 
 * `master` only for my city (Fortaleza, Brazil)
-* `feature/find-a-theater` for cities all over Canada
+* `feature/find-a-theater` for cities over Canada
 
 ## The backend
 It's another project that I also keep [here](https://github.com/Jefferson227/busca-cinema-backend) on GitHub.
 
 ## The app
-[Here](https://buscacinema.com) is the app running (the Brazilian version) if you want to check this out.
+[Here](https://busca-cinema.firebaseapp.com/) is the app running (the Brazilian version) if you want to check this out.
 
 [Here](https://find-a-theater.firebaseapp.com) is the Canadian version.
 
