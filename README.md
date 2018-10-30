@@ -1,6 +1,6 @@
 # busca-cinema
 
-Busca Cinema (or Find a Theater, translated from portuguese) is a simple app to show the current movies on theaters and its sessions' informations such as rooms, time, 3D, 2D, subtitled, etc.
+Busca Cinema (or Find a Theater, translated from Portuguese) is a simple app to show the current movies on theaters and its sessions' information such as rooms, time, 3D, 2D, subtitled, etc.
 
 For while it's divided into two branches:
 
@@ -11,9 +11,9 @@ For while it's divided into two branches:
 It's another project that I also keep [here](https://github.com/Jefferson227/busca-cinema-backend) on GitHub.
 
 ## The app
-Here is the app running https://buscacinema.com (the brazilian version) if you want to check this out.
+[Here](https://buscacinema.com) is the app running (the Brazilian version) if you want to check this out.
 
-Here is the link for the canadian version: https://find-a-theater.firebaseapp.com
+[Here](https://find-a-theater.firebaseapp.com) is the Canadian version.
 
 ****
 
