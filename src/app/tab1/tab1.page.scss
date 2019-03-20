@@ -13,6 +13,8 @@ ion-item {
   --border-style: none;
   color: white;
   margin-bottom: 0.2em;
+  animation-name: fadeTop;
+  animation-duration: 0.5s;
 }
 
 ion-list {
@@ -21,4 +23,16 @@ ion-list {
 
 ion-list-header {
   --color: white;
+  animation-name: fadeIn;
+  animation-duration: 1s;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes fadeTop {
+  from { top: -42px; }
+  to { top: 0; }
 }
