@@ -2,3 +2,23 @@
   max-height: 35vh;
   overflow: hidden;
 }
+
+.select-container {
+  margin: 1em;
+}
+
+ion-item {
+  --border-radius: 1em;
+  --background: rgba(255, 255, 255, 0.2);
+  --border-style: none;
+  color: white;
+  margin-bottom: 0.2em;
+}
+
+ion-list {
+  background: inherit;
+}
+
+ion-list-header {
+  --color: white;
+}
