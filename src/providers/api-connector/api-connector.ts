@@ -8,7 +8,7 @@ import 'rxjs/add/operator/map';
 export class ApiConnectorProvider extends ApiProvider {
 
   constructor(public http: HttpClient, public cache: CacheService) {
-    super('https://busca-cinema-backend-mirror.herokuapp.com', http, cache);
+    super('https://good-cyan-wombat-wrap.cyclic.app', http, cache);
   }
 
   getMovies(cityId) {
